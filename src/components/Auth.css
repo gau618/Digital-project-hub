@@ -9,7 +9,7 @@
 .Home_button{
     position: absolute;
     right: 5%;
-    top: 7%;
+    top: 5%;
     background-color: black;
     color: #fff;
     font-size: 12px;
@@ -195,7 +195,20 @@
     border-radius: 150px 0 0 100px;
     z-index: 1000;
 }
-
+@media (max-width:900px) {
+    .toggle-container{
+        display: none;
+    }
+    .sign-in{
+        width: 100%;
+    }
+    .sign-up{
+        width: 100%;
+    }
+    .container.active .sign-up{
+        transform: translateX(0%);
+    }
+}
 .container.active .toggle-container{
     transform: translateX(-100%);
     border-radius: 0 150px 100px 0;
@@ -248,4 +261,17 @@
 
 .container.active .toggle-right{
     transform: translateX(200%);
+}
+.Sign-phone{
+    margin-left: 10px;
+    background: linear-gradient(to right, hsl(187, 85%, 43%), hsl(199, 100%, 33%));
+}
+.auth_phone{
+    display: flex;
+    justify-content: center;
+}
+@media (min-width:900px) {
+    .auth_phone{
+        display: none;
+    }
 }

@@ -89,6 +89,9 @@ const AuthForm = () => {
     <button className="Home_button" onClick={backToHome}>Home</button>
       <div className={`container ${active === true && "active"}`} id="container">
         <div className="form-container sign-up">
+          <div className="auth_phone">
+        <button className="Sign-phone" onClick={()=>{setActive(false)}}>Sign In</button>
+        </div>
           <form onSubmit={handleSubmit}>
             <h1>Sign Up</h1>
             <div className="social-icons">
@@ -127,6 +130,9 @@ const AuthForm = () => {
           </form>
         </div>
         <div className="form-container sign-in">
+        <div className="auth_phone">
+        <button className="Sign-phone" onClick={()=>{setActive(true)}}>Sign Up</button>
+        </div>
           <form onSubmit={handleSubmit}>
             <h1>Sign In</h1>
             <div className="social-icons">
