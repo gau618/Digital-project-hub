@@ -72,6 +72,9 @@ export default function Header() {
                   <Link to="/YOURTASKS" onClick={toggleSidebar}>YOUR TASKS</Link>
                   <Link to="#" onClick={scrollToContacts}>CONTACT</Link>
                 </div>
+                <div className="Searchbox">
+                {user ?<button className="button2" onClick={SignOut}>LogOut</button>:<button className="button1" onClick={goToAuth}>Credentials</button>}
+          </div>
               </div>
             </>
           ) : (
