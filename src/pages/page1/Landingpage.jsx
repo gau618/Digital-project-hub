@@ -7,10 +7,18 @@ import Projectbox from './projectbox';
 import { FaRegLightbulb } from "react-icons/fa";
 import Typed from 'typed.js';
 import "./index.scss";
-
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../AuthContext';
 export default function Landingpage() {
   const [currentImage, setCurrentImage] = useState(landingpageimage);
   const [fade, setFade] = useState(false);
+  const {user}=useAuth();
+  const navigate=useNavigate();
+  useEffect(()=>{
+    if(user){
+      navigate('/');
+    }
+  },[user]);
   useEffect(() => {
     const images = [landingpageimage, landingpageimage1, landingpageimage2];
     let index = 0;

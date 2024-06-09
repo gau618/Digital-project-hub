@@ -2,12 +2,21 @@ import React, { useState, useEffect } from 'react';
 import { IoIosSearch, IoIosMenu } from "react-icons/io";
 import { IoCloseSharp } from "react-icons/io5";
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../AuthContext';
 import './header.scss';
 
 export default function Header() {
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
+  const {user,logout}=useAuth();
+  const navigate=useNavigate();
+  const goToAuth=()=>{
+    navigate("/auth");
+  }
+  const SignOut=()=>{
+    logout();
+  }
   useEffect(() => {
     const handleResize = () => setScreenWidth(window.innerWidth);
     window.addEventListener('resize', handleResize);
@@ -31,7 +40,6 @@ export default function Header() {
   const closeSidebar = () => {
     setIsSidebarOpen(false);
   };
-
   return (
     <div className="headerContainer">
       <div className="headername">
@@ -47,8 +55,7 @@ export default function Header() {
             <Link to="#" onClick={scrollToContacts}>CONTACT</Link>
           </div>
           <div className="Searchbox">
-            <input type="text" />
-            <IoIosSearch className='searchicon' />
+            {user ?<button className="button2" onClick={SignOut}>LogOut</button>:<button className="button1" onClick={goToAuth}>Credentials</button>}
           </div>
         </>
       ) : (
