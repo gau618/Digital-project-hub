@@ -6,6 +6,7 @@ import "./Auth.css";
 
 const AuthForm = () => {
   const [isSignUp, setIsSignUp] = useState(true);
+  const [name,SetName]=useState('')
   const [active, setActive] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -33,8 +34,9 @@ const AuthForm = () => {
     e.preventDefault();
     try {
       if (isSignUp) {
-        await signUp(email, password);
+        await signUp(email, password,name);
         console.log("signUp")
+        console.log(name);
       } else {
         await signIn(email, password);
         console.log("signIn")
@@ -109,7 +111,13 @@ const AuthForm = () => {
               </a>
             </div>
             <span>or use your email for registration</span>
-            <input type="text" placeholder="Name" required/>
+            <input 
+              type="text" 
+              placeholder="Name" 
+              required
+              value={name}
+              onChange={(e)=>SetName(e.target.value)}
+              />
             <input
               type="email"
               placeholder="Email"

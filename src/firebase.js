@@ -1,21 +1,24 @@
 import { initializeApp } from "firebase/app";
 import { getDatabase } from "firebase/database";
 import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyC18LIDcaAQ5Rs0OdTDXWAhiiFNH4RUzA0",
-  authDomain: "digital-hub-1d53a.firebaseapp.com",
-  databaseURL: "https://digital-hub-1d53a-default-rtdb.firebaseio.com",
-  projectId: "digital-hub-1d53a",
-  storageBucket: "digital-hub-1d53a.appspot.com",
-  messagingSenderId: "236394643105",
-  appId: "1:236394643105:web:2f73572ccd1b988d823ae0",
-  measurementId: "G-ZXV2YWP5SJ"
+  databaseURL: "https://my-projects-bac9c-default-rtdb.firebaseio.com/",
+  apiKey: "AIzaSyClsoqt087C7KH3FL0v3FVHJHrTancmre8",
+  authDomain: "my-projects-bac9c.firebaseapp.com",
+  projectId: "my-projects-bac9c",
+  storageBucket: "my-projects-bac9c.appspot.com",
+  messagingSenderId: "664651647626",
+  appId: "1:664651647626:web:f3cd690d12c8dceca43b73",
+  measurementId: "G-GTGE5ZKDWH"
   };
   
 
   const app = initializeApp(firebaseConfig);
   const database = getDatabase(app);
   export const auth = getAuth(app);
-  
+  export const db= getFirestore(app);
+  export const storage=getStorage(app);
   export { database };

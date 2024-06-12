@@ -1,0 +1,352 @@
+.Profile_container{
+    margin: 0px 6%;
+    box-shadow: 0px 0px 1px rgb(235, 234, 234);
+    display: flex;
+    background-color: #eeffff;
+    .left_container{
+        width: 40%;
+        padding: 0px 5%;
+        border-radius: 30px;
+        .profile{
+            margin-top: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-radius: 30px;
+            img{
+                width: 200px;
+                height: 250px;
+                margin-bottom: 20px;
+                border-radius: 30px;
+            }
+            input{
+                margin: 5px 0px;
+                height: 25px;
+            }
+            .readOnly{
+                border: none;
+                outline: none;
+                text-align: center;
+                font-size: medium;
+                font-family: "Roboto", sans-serif;
+                background-color: #ecfefe;
+            }
+            .edit_points{
+                display: flex;
+                margin-top: 10px;
+                .points{
+                    button {
+                        width: 100px;
+                        height: 30px;
+                        background-color: hsl(195.77, 100%, 38.04%);
+                        border: none;
+                        border-radius: 3px;
+                        color: #fff;
+                        transition-duration: .3s;
+                        cursor: pointer;
+                      }
+                      button:hover {
+                        box-shadow: 0px 0px 2px black;
+                      }
+                }
+                .edit_profile{
+                    display: flex;
+                    align-items: center;
+                    button {
+                        width: 100px;
+                        height: 30px;
+                        background-color: hsl(195.77, 100%, 38.04%);
+                        border: none;
+                        border-radius: 3px;
+                        color: #fff;
+                        transition-duration: .3s;
+                        cursor: pointer;
+                      }
+                      button:hover {
+                        box-shadow: 0px 0px 2px black;
+                      }
+                    button {
+                        width: 100px;
+                        height: 30px;
+                        color: hsl(195.77, 100%, 38.04%);
+                        border: none;
+                        margin-left: 10px;
+                        border-radius: 3px;
+                        background-color: #fff;
+                        box-shadow: 0px 0px 1px black;
+                        transition-duration: .3s;
+                        cursor: pointer;
+                      }
+                  
+                      button:hover {
+                        box-shadow: 0px 0px 2px black;
+                      }
+                }
+
+            }
+        }
+    }
+    .right_container{
+        width: 60%;
+        .details{
+            margin-top: 50px;
+            .items{
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                padding: 10px 30px;
+                input{
+                    font-size: medium;
+                    font-family: "Roboto", sans-serif;
+                    width: 50%;
+                    height: 30px;
+                    border-radius: 5px;
+                    outline: none;
+                    border: 2px solid rgb(192, 192, 192);
+                }
+                .Hide{
+                    border:none ;
+                   font-family: "Roboto", sans-serif;
+                   background-color: #ecfefe;
+                }
+                label{
+                    font-size: medium;
+                    font-family: "Roboto", sans-serif;
+                    color: rgb(113, 113, 113);
+                }
+            }
+            .About_Me{
+                display: flex;
+                flex-direction: column;
+                padding: 10px 30px;
+                label{
+                    font-size: medium;
+                    font-family: "Roboto", sans-serif;
+                    color: rgb(113, 113, 113);
+                    padding-bottom: 10px;
+                }
+                textarea{
+                    font-size: medium;
+                    font-family: "Roboto", sans-serif;
+                    height: 80px;
+                    outline: none;
+                    border: 2px solid rgb(192, 192, 192);
+                    resize: none;
+                }
+                .Hide{
+                    border:none ;
+                    outline: none;
+                    background-color: #fff;
+                    font-family: "Roboto", sans-serif;
+                    background-color: #ecfefe;
+                }
+
+            }
+            .edit_button{
+                padding: 15px 30px;
+                button {
+                    width: 100px;
+                    height: 30px;
+                    background-color:#fff;
+                    border: none;
+                    border-radius: 3px;
+                    color: hsl(195.77, 100%, 38.04%);
+                    transition-duration: .3s;
+                    cursor: pointer;
+                    box-shadow: 0px 0px 2px rgb(121, 121, 121);
+                  }
+                  button:hover {
+                    box-shadow: 0px 0px 2px black;
+                  }
+            }
+            .save_button{
+                padding: 5px 30px;
+                .button1 {
+                    width: 100px;
+                    height: 30px;
+                    background-color: hsl(195.77, 100%, 38.04%);
+                    border: none;
+                    border-radius: 3px;
+                    color: #fff;
+                    transition-duration: .3s;
+                    cursor: pointer;
+                  }
+              
+                  .button2 {
+                    width: 100px;
+                    height: 30px;
+                    color: hsl(195.77, 100%, 38.04%);
+                    border: none;
+                    margin-left: 10px;
+                    border-radius: 3px;
+                    background-color: #fff;
+                    box-shadow: 0px 0px 1px black;
+                    transition-duration: .3s;
+                    cursor: pointer;
+                  }
+              
+                  .button2:hover {
+                    box-shadow: 0px 0px 2px black;
+                  }
+              
+                  .button1:hover {
+                    box-shadow: 0px 0px 2px black;
+                  }
+              
+            } 
+        }
+        
+
+    }
+    .projects{
+       .project_header{
+        padding: 10px 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        button{
+                width: 100px;
+                height: 30px;
+                color: hsl(195.77, 100%, 38.04%);
+                border: none;
+                margin-left: 10px;
+                border-radius: 3px;
+                background-color: #fff;
+                box-shadow: 0px 0px 1px black;
+                transition-duration: .3s;
+                cursor: pointer;
+              }
+              .button2:hover {
+                box-shadow: 0px 0px 2px black;
+              }
+        
+       }
+       .project_box{
+        padding: 10px 30px;
+        .projectname{
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                padding: 10px 0px;
+                input{
+                    font-size: medium;
+                    font-family: "Roboto", sans-serif;
+                    width: 50%;
+                    height: 30px;
+                    border-radius: 5px;
+                    outline: none;
+                    border: 2px solid rgb(192, 192, 192);
+                }
+                label{
+                    font-size: medium;
+                    font-family: "Roboto", sans-serif;
+                    color: rgb(113, 113, 113);
+                }
+        }
+        .projectDescription{
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                padding: 10px 0px;
+                label{
+                    font-size: medium;
+                    font-family: "Roboto", sans-serif;
+                    color: rgb(113, 113, 113);
+                }
+                textarea{
+                    font-size: medium;
+                    font-family: "Roboto", sans-serif;
+                    height: 80px;
+                    margin-top: 10px;
+                    outline: none;
+                    border: 2px solid rgb(192, 192, 192);
+                    resize: none;
+                }
+
+        }
+        .Project_list{
+           .myProject{
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0px 0px 1px black;
+            margin: 10px 0px;
+            padding: 5px 5px;
+            background-color: #fff;
+            border-radius: 4px;
+            h5{
+                padding-bottom: 4px;
+            }
+           }
+        }
+       }
+    }
+}
+@media (max-width:760px) {
+    .Profile_container{
+        flex-direction: column;
+        .left_container{
+            width: 100%;
+            .profile{
+                align-items: center;
+                margin-bottom: 10px;
+            }
+        }
+        .right_container{
+            width: 100%;
+            font-size: x-small;
+            .details{
+                .items{
+                    align-items: center;
+                    input{
+                        font-size: x-small;
+                    }
+                    label{
+                        font-size: x-small;
+                    }
+                }
+                .About_Me{
+                    label{
+                        font-size: x-small;
+                    }
+                    textarea{
+                        font-size: x-small;
+                    }
+                }
+                .save_button{
+                    display: flex;
+                }
+            }
+            .projects{
+            .project_header{
+               h4{
+                font-size: small;
+               }
+               button{
+                font-size:x-small;
+                width: 70px;
+                height: 25px;
+               }
+            }
+            .project_box{
+                .projectname{
+                    align-items: center;
+                    label{
+                        font-size: x-small;
+                    }
+                    input{
+                        font-size: x-small;
+                    }
+                }
+                .projectDescription{
+                    label{
+                        font-size: x-small;
+                    }
+                    textarea{
+                        font-size: x-small;
+                    }
+                }
+            }
+        }
+        }
+    }
+}

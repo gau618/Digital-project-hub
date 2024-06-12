@@ -10,6 +10,7 @@ import Footer from "./Footer/Footer";
 import AOS from "aos";
 import "./App.css";
 import "aos/dist/aos.css";
+import UserProfile from "./components/Profile_page/Profile";
 const App = () => {
   useEffect(() => {
     AOS.init({
@@ -25,6 +26,7 @@ const App = () => {
           <Route path="/" element={<LandingPage />} />
           <Route path="/ADDTASK" element={<TaskDetailPage />} />
           <Route path="/YOURTASKS" element={<YourTaskPage />} />
+          <Route path="UserProfile/:id" element={<UserProfile />}></Route>
           <Route path="/auth" element={<AuthForm />} />
         </Routes>
         <Routes>
@@ -37,7 +39,6 @@ const App = () => {
 
 const ConditionalHeader = () => {
   const location = useLocation();
-  console.log(location.pathname);
   return location.pathname !== "/auth" ? <Header /> : null;
 };
 
