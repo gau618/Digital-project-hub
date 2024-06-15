@@ -1,7 +1,10 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail, signOut, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
-import { auth, db } from './firebase';
-import { doc, setDoc, getDoc, collection, addDoc,updateDoc, getDocs} from 'firebase/firestore';
+import { auth, db ,storage} from './firebase';
+import { doc, setDoc, getDoc, collection, addDoc,updateDoc, getDocs,} from 'firebase/firestore';
+import {imagePaths} from './Data/Data1';
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { initialdata1 } from './Data/Data1';
 
 const AuthContext = createContext();
 
@@ -68,7 +71,6 @@ export const AuthProvider = ({ children }) => {
     const projectsSnapshot = await getDocs(projectsRef);
     const projectsList = projectsSnapshot.docs.map(doc => doc.data());
     return projectsList;
-    console.log(projectsList);
   };
     getPastProjects();
   const updateProfile=async(value)=>{
@@ -83,6 +85,56 @@ export const AuthProvider = ({ children }) => {
     const snap = await getDoc(ref);
     return snap.exists() ? snap.data() : null;
   };
+  const uploadImage = async (filePath, storagePath) => {
+    const response = await fetch(filePath);
+    const blob = await response.blob();
+    const storageRef = ref(storage, storagePath);
+    await uploadBytes(storageRef, blob);
+    const url = await getDownloadURL(storageRef);
+    return url;
+  };
+  const uploadAllImages = async () => {
+    const uploadPromises = imagePaths.map(image => uploadImage(image.filePath, image.storagePath));
+    const urls = await Promise.all(uploadPromises);
+    return urls;
+  };
+  const getUploadedImagesUrls = async () => {
+    const urls = await uploadAllImages();
+    console.log('All images uploaded and URLs obtained:');
+    return urls;
+  };
+
+const storeInitialData = async () => {
+  try {
+    // Get the URLs for all images
+    const urls = await getUploadedImagesUrls();
+    
+    // Update initialdata1 with these URLs
+    initialdata1.forEach((data, index) => {
+      data.image = urls[index];
+    });
+
+    // Store updated data in Firestore
+    const collectionRef = collection(db, 'projects');
+    for (const data of initialdata1) {
+      await addDoc(collectionRef, data);
+    }
+    console.log('Initial data added to Firestore successfully');
+  } catch (error) {
+    console.error('Error adding initial data to Firestore: ', error);
+  }
+};
+const getAllProjects = async () => {
+  try {
+    const projectsCollection = collection(db, 'projects');
+    const projectSnapshot = await getDocs(projectsCollection);
+    const projectList = projectSnapshot.docs.map(doc => doc.data());
+    return projectList;
+  } catch (error) {
+    console.error('Error fetching projects: ', error);
+    return [];
+  }
+};
   return (
     <AuthContext.Provider
       value={{
@@ -99,7 +151,9 @@ export const AuthProvider = ({ children }) => {
         userName,
         updateProfile,
         addPastProject,
-        getPastProjects
+        getPastProjects,
+        getAllProjects,
+        storeInitialData
       }}
     >
       {children}

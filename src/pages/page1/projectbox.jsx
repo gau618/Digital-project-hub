@@ -1,9 +1,24 @@
-import React from "react";
+import React,{ useState, useEffect } from "react";
 import "./index.scss";
 import ProjectBoxCard from "./ProjectBoxCard";
 import { initialdata1 } from "../../Data/Data1";
-
+import { useAuth } from '../../AuthContext';
 export default function Projectbox() {
+  const [projects, setProjects] = useState([]);
+  const { getAllProjects } = useAuth();
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const projectsData = await getAllProjects();
+        setProjects(projectsData);
+      } catch (error) {
+        console.error('Error fetching projects:', error);
+      }
+    };
+
+    fetchProjects();
+  }, []);
   return (
     <>
       <div className="project-box" id="projects-section">
@@ -18,7 +33,7 @@ export default function Projectbox() {
           </div>
         </div>
         <div className="project-box-cards-container">
-          {initialdata1.map((item, index) => (
+          {projects.map((item, index) => (
             <ProjectBoxCard
               key={index}
               item={item}

@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { IoMdStopwatch } from "react-icons/io";
 import { GrProjects } from "react-icons/gr";
 
-export default function ProjectBoxCard({ item, index }) {
-  const animationType = index % 2 === 0 ? 'fade-right' : 'fade-left'; // Even index: fade-right, Odd index: fade-left
+
+export default function ProjectBoxCard({ item, index }) { 
+  const animationType = index % 2 === 0 ? 'fade-right' : 'fade-left';
+
   return (
     <div className="single-card" data-aos={animationType}>
       <div className="card-img">
@@ -34,4 +36,3 @@ export default function ProjectBoxCard({ item, index }) {
     </div>
   );
 }
-

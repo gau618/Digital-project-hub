@@ -38,7 +38,7 @@ export default function Taskdetailpage(){
         },
         body: JSON.stringify(formDataWithSkillsArray)
       };
-      const response = await fetch('https://digital-hub-1d53a-default-rtdb.firebaseio.com/UserData.json', options);
+      const response = await fetch('https://my-projects-bac9c-default-rtdb.firebaseio.com/UserData.json', options);
       if (response.ok) {
         alert('Message Sent');
         const updatedData = [...initialData, formDataWithSkillsArray];

@@ -1,3 +1,5 @@
+// this is a dummy data.
+
 import image1 from "../assets/project-icon1.jpg";
 import image2 from "../assets/icon2.jpg"
 import image3 from "../assets/icon3.jpg"
