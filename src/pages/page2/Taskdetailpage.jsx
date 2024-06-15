@@ -21,7 +21,7 @@ export default function Taskdetailpage() {
       [name]: value
     }));
   };
-
+  // this was the part of assignment, have to change it from real time to firestore
   const handleSubmit = async (e) => {
     e.preventDefault();
     const skillsArray = formData.skillInvolved.trim().split(/\s+/).filter((skill) => skill);
