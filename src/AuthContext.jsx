@@ -94,16 +94,18 @@ export const AuthProvider = ({ children }) => {
   const signIn = (email, password) =>
     signInWithEmailAndPassword(auth, email, password);
 
-  const signInWithGoogle = () =>
-    signInWithPopup(auth, new GoogleAuthProvider());
+  const signInWithGoogle = () =>signInWithPopup(auth, new GoogleAuthProvider());
+  
 
   const resetPassword = (email) => sendPasswordResetEmail(auth, email);
 
   const logout = () => signOut(auth);
 
-  const saveProfile = async (name, email, github, skills, aboutMe) => {
-    const userId = auth.currentUser.uid;
-    const profileRef = doc(db, "profiles", userId);
+const saveProfile = async (name, email, github, skills, aboutMe) => {
+  const userId = auth.currentUser.uid;
+  const profileRef = doc(db, "profiles", userId);
+
+  try {
     const docSnapshot = await getDoc(profileRef);
 
     if (docSnapshot.exists()) {
@@ -121,11 +123,24 @@ export const AuthProvider = ({ children }) => {
 
       // Update document with merged data
       await setDoc(profileRef, updatedData);
+      console.log("Profile updated successfully");
     } else {
-      // Document does not exist handling
-      console.error("Document does not exist");
+      // If the document does not exist, create it with the provided data
+      const newData = {
+        name,
+        email,
+        github,
+        skills,
+        aboutMe,
+      };
+
+      await setDoc(profileRef, newData);
+      console.log("New profile document created");
     }
-  };
+  } catch (error) {
+    console.error("Error saving profile:", error);
+  }
+};
 
   const addPastProject = async (projectName, projectDescription) => {
     const userId = auth.currentUser.uid;
