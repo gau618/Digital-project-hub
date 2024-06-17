@@ -1,13 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { IoMdStopwatch } from "react-icons/io";
 import { GrProjects } from "react-icons/gr";
-
-
-export default function ProjectBoxCard({ item, index }) { 
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../AuthContext';
+export default function ProjectBoxCard({ item, index, Id }) { 
+  const {user}=useAuth();
   const animationType = index % 2 === 0 ? 'fade-right' : 'fade-left';
-
+  const Navigate=useNavigate();
+  const NavigateToApply=()=>{
+    if(user){
+      Navigate(`/Project/${Id}`);
+    }else{
+      alert('Please SignIN')
+    }
+    
+  }
   return (
-    <div className="single-card" data-aos={animationType}>
+    <div className="single-card" data-aos={animationType} onClick={NavigateToApply}>
       <div className="card-img">
         <img src={item.image} alt="" />
       </div>

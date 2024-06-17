@@ -37,7 +37,9 @@ export default function Projectbox() {
             <ProjectBoxCard
               key={index}
               item={item}
-              index={index} // Pass index to determine left or right card
+              index={index}
+              Id={item.id}
+               // Pass index to determine left or right card
             />
           ))}
         </div>

@@ -17,7 +17,6 @@ export default function Header() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
-  console.log(location.pathname);
 
   useEffect(() => {
     const handleResize = () => setScreenWidth(window.innerWidth);
@@ -85,8 +84,6 @@ export default function Header() {
             <Link to="#" onClick={scrollToProjects}>
               PROJECTS
             </Link>
-            <Link to="/ADDTASK">ADD TASK</Link>
-            <Link to="/YOURTASKS">YOUR TASKS</Link>
             <Link to="#" onClick={scrollToContacts}>
               CONTACT </Link>
           </div>
@@ -129,12 +126,6 @@ export default function Header() {
                   </Link>
                   <Link to="#" onClick={scrollToProjects}>
                     PROJECTS
-                  </Link>
-                  <Link to="/ADDTASK" onClick={toggleSidebar}>
-                    ADD TASK
-                  </Link>
-                  <Link to="/YOURTASKS" onClick={toggleSidebar}>
-                    YOUR TASKS
                   </Link>
                   <Link to="#" onClick={scrollToContacts}>
                     CONTACT

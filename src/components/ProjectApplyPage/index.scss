@@ -1,0 +1,243 @@
+.projectApplyContainer{
+    margin: 40px 6%;
+    display: flex;
+    .left-container{
+        width: 30%;
+    .single-card{
+        box-shadow: 0px 0px 1px rgb(223, 222, 222);
+        padding: 5px;
+        margin-bottom: 50px;
+        transition-duration: 1s;
+        min-width: 210px;
+        padding-right: 15px;
+        .card-img{
+            padding-bottom: 5px;
+            img{
+                width: 100%;
+                height: 250px;
+                border-radius: 10px 10px 0px 0px;
+            }
+        }
+        .type-design{
+            padding-bottom: 20px;
+            display: flex;
+            
+            justify-content: space-between;
+            div{
+                font-size: small;
+                display: flex;
+                gap: 4px;
+                color:rgb(159, 158, 158);
+                p{
+                    color:rgb(94, 94, 94);
+                }
+            }
+        }
+        .title{
+            padding-bottom: 20px;
+            font-family: "Roboto", sans-serif;
+        }
+        .discription{
+            padding-bottom: 15px;
+            color:rgb(139, 139, 139);
+        }
+        .project-price{
+            display: flex;
+            padding-bottom: 15px;
+            justify-content: space-between;
+            align-items: center;
+            color: hsl(195.77, 100%, 38.04%);
+            button{
+                width: 100px;
+                height: 30px;
+                border: none;
+                border-radius: 5px;
+                background-color: #fff;
+                color: hsl(195.77, 100%, 38.04%);
+                box-shadow: 0px 0px 1px black;
+                transition-duration: .3s;
+                cursor: pointer;
+            }
+            button:hover {
+                box-shadow: 0px 0px 2px black;
+              }
+        }
+    }
+}
+.right-container{
+    width: 70%;
+    padding: 30px;
+    padding-left: 15px;
+    padding-top: 0px;
+    h3{
+       color: #474747;
+    }
+    .personal-details{
+       width: 100%;
+       display: flex;
+       justify-content: space-between;
+       padding-top: 15px;
+       align-items: center;
+       .first-name{
+           width: 45%;
+           display: flex;
+           flex-direction: column;
+           input{
+               width: 100%;
+               margin-top: 10px;
+               padding: 2px 0px;
+               outline: none;
+               color: hsl(0, 0%, 60%);
+               font-size: medium;
+               border: none;
+           }
+           label{
+                 color: hsl(0, 0%, 38%);
+           }
+       }
+    }
+    .title-duration{
+       width: 100%;
+       display: flex;
+       justify-content: space-between;
+       padding-top: 15px;
+       align-items: center;
+       .Project-title{
+           width: 45%;
+       display: flex;
+       flex-direction: column;
+       .Hide{
+        border: none;
+       }
+       input{
+           width: 100%;
+           margin-top: 10px;
+           padding: 2px 0px;
+           outline: none;
+           color: hsl(0, 0%, 60%);
+       }
+       label{
+          
+        color: hsl(0, 0%, 38%);
+       }
+       }
+   }
+   .project-description{
+       display: flex;
+       flex-direction: column;
+       padding-top: 15px;
+       height: 130px;
+       .Hide{
+        border: none;
+       }
+       .text-area{
+           flex-grow: 1;
+           margin-top: 10px;
+           outline: none;
+           color: hsl(0, 0%, 60%);
+       }
+       label{
+        color: hsl(0, 0%, 38%);
+       }
+       
+
+   }
+   .skill{
+       width: 45%;
+       display: flex;
+       flex-direction: column;
+       padding-top: 15px;
+       input{
+           width: 100%;
+           margin-top: 10px;
+           padding: 2px 0px;
+           outline: none;
+           border: none;
+           color: hsl(0, 0%, 60%);
+       }
+       label{
+        color: hsl(0, 0%, 38%);
+       }
+   }
+   .button{
+    display: flex;
+    justify-content: space-between;
+   .button1{
+       width: 120px;
+       height: 30px;
+       font-size: 12px;
+       color: #fff;
+       border: none;
+       margin-top: 15px;
+       border-radius: 3px;
+       background-color:hsl(195.77, 100%, 38.04%);
+       box-shadow: 0px 0px 1px black;
+       transition-duration: .3s;
+       cursor: pointer;
+   }
+   .button1:hover {
+       box-shadow: 0px 0px 2px black;
+     }
+     .button2{
+        width: 120px;
+        height: 30px;
+        font-size: 12px;
+        color:hsl(195.77, 100%, 38.04%);
+        border: none;
+        margin-top: 15px;
+        border-radius: 3px;
+        background-color:#fff;
+        box-shadow: 0px 0px 1px black;
+        transition-duration: .3s;
+        cursor: pointer;
+    }
+    .button2:hover {
+        box-shadow: 0px 0px 2px black;
+      }
+    }
+   }
+   @media (max-width:760px) {
+        .left-container{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            .single-card{
+                width: 50%;
+                padding: 0px;
+            }
+
+        }
+       .right-container{
+           width: 100%;
+           font-size: small;
+           h3{
+               font-size: small;
+           }
+         
+           .personal-details{
+            flex-direction: column;
+            align-items: flex-start;
+            .first-name{
+                width: 100%;
+                input{
+                    width: 100%;
+                }
+            }
+           
+           }
+           .title-duration{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            .Project-title{
+                width: 100%;
+            }
+           }
+       }
+   }
+}
+@media (max-width:760px) {
+    .projectApplyContainer{
+        flex-direction: column;
+    }
+}

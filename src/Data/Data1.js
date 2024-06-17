@@ -16,56 +16,64 @@ export const initialdata1 = [
     time: '2 Months',
     title: 'Facial Emotion Recognition',
     description: 'Develop a system to recognize and classify facial emotions of users using the KNN algorithm effectively.',
-    price: '$200'
+    price: '$200',
+    moderatorId:''
   },
   {
     type: 'Web Development',
     time: '1 Month',
     title: 'Responsive Portfolio Website',
     description: 'Create a personal portfolio website that is fully responsive and visually appealing for all devices like laptop and phones',
-    price: '$100'
+    price: '$100',
+    moderatorId:''
   },
   {
     type: 'Mobile Development',
     time: '3 Months',
     title: 'E-Commerce Mobile App',
     description: 'Build a cross-platform mobile app for e-commerce using React Native with a seamless user interface and best UI',
-    price: '$300'
+    price: '$300',
+    moderatorId:''
   },
   {
     type: 'Data Science',
     time: '2 Months',
     title: 'Customer Segmentation',
     description: 'Implement a customer segmentation project using the K-Means clustering algorithm for targeted marketing.',
-    price: '$250'
+    price: '$250',
+    moderatorId:''
   },
   {
     type: 'Cyber Security',
     time: '1.5 Months',
     title: 'Vulnerability Scanner',
     description: 'Develop a tool to scan and identify security vulnerabilities in web applications effectively and securly.',
-    price: '$220'
+    price: '$220',
+    moderatorId:''
   },
   {
     type: 'Artificial Intelligence',
     time: '2.5 Months',
     title: 'Chatbot using NLP',
     description: 'Create an intelligent chatbot capable of understanding and responding to user queries using NLP techniques.',
-    price: '$280'
+    price: '$280',
+    moderatorId:''
   },
   {
     type: 'Blockchain',
     time: '3 Months',
     title: 'Decentralized Voting System',
     description: 'Build a secure and transparent voting system using blockchain technology to ensure integrity and trust.',
-    price: '$350'
+    price: '$350',
+    moderatorId:''
   },
   {
     type: 'Internet of Things (IoT)',
     time: '2 Months',
     title: 'Smart Home Automation',
     description: 'Develop an IoT-based home automation system with remote control features for convenience and security.',
-    price: '$270'
+    price: '$270',
+    moderatorId:''
   }
 ];
 
