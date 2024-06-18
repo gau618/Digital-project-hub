@@ -86,6 +86,8 @@ export default function Header() {
             </Link>
             <Link to="#" onClick={scrollToContacts}>
               CONTACT </Link>
+              {user?<Link to={`/YourProjects/${auth.currentUser.uid}`}>YOURPROJECTS</Link>:''}
+              
           </div>
           <div className="Searchbox">
             {auth.currentUser && location.pathname === `/UserProfile/${auth.currentUser.uid}` ? (

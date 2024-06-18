@@ -4,6 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { IoMdStopwatch } from "react-icons/io";
 import { GrProjects } from "react-icons/gr";
 import "./index.scss";
+import firebase from "firebase/compat/app";
 
 export default function ProjectApplyPage() {
   const [name, setName] = useState("");
@@ -61,7 +62,9 @@ export default function ProjectApplyPage() {
         PastProjectLink,
         projectDescription,
         YourModerator:item.moderatorId,
-        github
+        github,
+        projectStatus:'requested',
+        firebaseProjectid:id
     }
     console.log(userApplicationDetails);
     applyforproject(item.projectId,userApplicationDetails);

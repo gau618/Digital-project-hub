@@ -285,6 +285,27 @@ const saveProfile = async (name, email, github, skills, aboutMe) => {
       // Handle error (e.g., show error message to user)
     }
   };
+  const getAllYourProjects = async () => {
+    try {
+      const userId = auth.currentUser.uid; // Get the current user's ID
+      const projectApplicationsRef = doc(db, 'projectApplications', userId); // Reference to user's project applications document
+      const yourProjectsRef = collection(projectApplicationsRef, 'yourProjects'); // Reference to subcollection 'yourProjects'
+  
+      const querySnapshot = await getDocs(yourProjectsRef); // Fetch all documents from 'yourProjects' subcollection
+  
+      let projects = [];
+      querySnapshot.forEach((doc) => {
+        projects.push({ id: doc.id, ...doc.data() }); // Push each document's data into the projects array
+      });
+  
+      console.log('Projects retrieved successfully:', projects);
+      return projects;
+    } catch (error) {
+      console.error('Error retrieving projects:', error);
+      // Handle error (e.g., show error message to user)
+      return [];
+    }
+  };
   
 
   return (
@@ -307,7 +328,8 @@ const saveProfile = async (name, email, github, skills, aboutMe) => {
         getAllProjects,
         storeInitialData,
         getProjectById,
-        applyforproject
+        applyforproject,
+        getAllYourProjects
       }}
     >
       {children}

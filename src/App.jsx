@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes, useLocation } from "react-route
 import AuthForm from "./components/AuthForm";
 import LandingPage from "./pages/page1/Landingpage";
 import TaskDetailPage from "./pages/page2/Taskdetailpage";
-import YourTaskPage from "./pages/page3/YourTaskpage";
+import YourProjects from "./components/YourProject/YourProject";
 import ProjectApplyPage from "./components/ProjectApplyPage/ProjectApplyPage";
 import Header from "./header/header";
 import Footer from "./Footer/Footer";
@@ -30,7 +30,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/ADDTASK" element={<TaskDetailPage />} />
-        <Route path="/YOURTASKS" element={<YourTaskPage />} />
+        <Route path="/YourProjects/:id" element={<YourProjects />} />
         <Route path="/UserProfile/:id" element={<UserProfile />} />
         <Route path="/auth" element={<AuthForm />} />
         <Route path='/Project/:id' element={<ProjectApplyPage/>}> </Route>
