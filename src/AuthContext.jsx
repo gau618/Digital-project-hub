@@ -56,7 +56,8 @@ export const AuthProvider = ({ children }) => {
         skills: "",
         aboutMe: "",
         role: "user", // Assuming default role is "user"
-        moderatorId: "", // Initialize with empty value for moderatorId
+        moderatorId: "",
+        isModerator:false // Initialize with empty value for moderatorId
       });
       console.log("Sign-up successful:", currentUser);
     } catch (error) {
@@ -243,39 +244,39 @@ const saveProfile = async (name, email, github, skills, aboutMe) => {
   const applyforproject = async (projectId, userApplication) => {
     console.log(projectId);
     const userId = auth.currentUser.uid;
-    const projectApplicationsRef = doc(db, 'projectApplications', userId); // Reference to user's project applications document
-    const yourProjectsRef = collection(projectApplicationsRef, 'yourProjects'); // Reference to subcollection 'yourProjects'
+    const projectApplicationsRef = doc(db, 'projectApplications', userId); 
+    const yourProjectsRef = collection(projectApplicationsRef, 'yourProjects'); 
   
     try {
-      // Check if user's project application document already exists
+  
       const docSnapshot = await getDoc(projectApplicationsRef);
   
       if (docSnapshot.exists()) {
-        // Document exists, update it with new data
+
         await updateDoc(projectApplicationsRef, {
           ...userApplication,
-          projectId: projectId // Add projectId to user application data
+          projectId: projectId
         });
   
-        // Add project details to 'yourProjects' subcollection
+     
         await setDoc(doc(yourProjectsRef, projectId), {
-          ...userApplication, // Store user application data under 'yourProjects' document
-          projectId: projectId // Include projectId in 'yourProjects' document as well
+          ...userApplication, 
+          projectId: projectId 
         });
   
         console.log('Project application updated successfully');
       } else {
-        // Document does not exist, create it with initial data
+      
         await setDoc(projectApplicationsRef, {
           userId: userId,
           projectId: projectId,
           ...userApplication
         });
   
-        // Also add project details to 'yourProjects' subcollection
+       
         await setDoc(doc(yourProjectsRef, projectId), {
-          ...userApplication, // Store user application data under 'yourProjects' document
-          projectId: projectId // Include projectId in 'yourProjects' document as well
+          ...userApplication, 
+          projectId: projectId 
         });
   
         console.log('New project application document created');
@@ -306,6 +307,42 @@ const saveProfile = async (name, email, github, skills, aboutMe) => {
       return [];
     }
   };
+  
+const getProjectsByModerator = async (moderatorId) => {
+  try {
+    const projectApplicationsRef = collection(db, 'projectApplications');
+    const projectApplicationsSnapshot = await getDocs(projectApplicationsRef);
+
+    let matchingProjects = [];
+
+    const promises = projectApplicationsSnapshot.docs.map(async (projectDoc) => {
+      const yourProjectsRef = collection(doc(db, 'projectApplications', projectDoc.id), 'yourProjects');
+      const yourProjectsQuery = query(yourProjectsRef, where('YourModerator', '==', moderatorId));
+      const yourProjectsSnapshot = await getDocs(yourProjectsQuery);
+
+      yourProjectsSnapshot.forEach(doc => {
+        matchingProjects.push(doc.data());
+      });
+    });
+
+    await Promise.all(promises);
+
+    return matchingProjects;
+  } catch (error) {
+    console.error('Error fetching projects:', error);
+    return [];
+  }
+};
+
+  const moderatorId='ab1C4D9e';
+  getProjectsByModerator(moderatorId)
+  .then(matchingProjects => {
+    console.log('Matching Projects:', matchingProjects);
+  })
+  .catch(error => {
+    console.error('Error fetching projects:', error);
+  });
+
   
 
   return (

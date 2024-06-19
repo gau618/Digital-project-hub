@@ -4,19 +4,20 @@ import { IoCloseSharp } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../AuthContext";
-import profile from '../assets/profile.jpg';
+import profile from "../assets/profile.jpg";
 import "./header.scss";
-import { auth,storage } from "../firebase";
-import { getDownloadURL, ref } from "firebase/storage";  // Import Firebase storage utilities
+import { auth, storage } from "../firebase";
+import { getDownloadURL, ref } from "firebase/storage"; // Import Firebase storage utilities
 import { useLocation } from "react-router-dom";
 
 export default function Header() {
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [photoURL, setPhotoURL] = useState("");
-  const { user, logout } = useAuth();
+  const { user, logout, GetProfile } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+  const [moderator, setmoderator] = useState();
 
   useEffect(() => {
     const handleResize = () => setScreenWidth(window.innerWidth);
@@ -39,6 +40,14 @@ export default function Header() {
     };
     fetchProfileImage();
   }, [auth.currentUser]); // Dependency array should include auth.currentUser
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      const data = await GetProfile();
+      setmoderator(data.isModerator);
+    };
+    fetchProfile();
+  }, [auth.currentUser,moderator]);
 
   const goToAuth = () => {
     navigate("/auth");
@@ -85,17 +94,32 @@ export default function Header() {
               PROJECTS
             </Link>
             <Link to="#" onClick={scrollToContacts}>
-              CONTACT </Link>
-              {user?<Link to={`/YourProjects/${auth.currentUser.uid}`}>YOURPROJECTS</Link>:''}
-              
+              CONTACT{" "}
+            </Link>
+            {user ? (
+              <Link to={`/YourProjects/${auth.currentUser.uid}`}>
+                YOURPROJECTS
+              </Link>
+            ) : (
+              ""
+            )}
+            {user&&moderator?
+            <Link to={`/ModeratorPage/${auth.currentUser.uid}`}>
+              MODERATORPAGE
+            </Link>:""}
           </div>
           <div className="Searchbox">
-            {auth.currentUser && location.pathname === `/UserProfile/${auth.currentUser.uid}` ? (
+            {auth.currentUser &&
+            location.pathname === `/UserProfile/${auth.currentUser.uid}` ? (
               <button className="button2" onClick={SignOut}>
                 LogOut
               </button>
             ) : user ? (
-              <img src={photoURL || profile} alt="img" onClick={NavigateToProfile} />
+              <img
+                src={photoURL || profile}
+                alt="img"
+                onClick={NavigateToProfile}
+              />
             ) : (
               <button className="button1" onClick={goToAuth}>
                 Credentials
@@ -110,17 +134,23 @@ export default function Header() {
               <div className="sidebar">
                 <IoCloseSharp className="closeIcon" onClick={closeSidebar} />
                 <div className="Searchbox">
-                {auth.currentUser && location.pathname === `/UserProfile/${auth.currentUser.uid}` ? (
-              <button className="button2" onClick={SignOut}>
-                LogOut
-              </button>
-            ) : user ? (
-              <img src={photoURL || profile} alt="img" onClick={NavigateToProfile} />
-            ) : (
-              <button className="button1" onClick={goToAuth}>
-                Credentials
-              </button>
-            )}
+                  {auth.currentUser &&
+                  location.pathname ===
+                    `/UserProfile/${auth.currentUser.uid}` ? (
+                    <button className="button2" onClick={SignOut}>
+                      LogOut
+                    </button>
+                  ) : user ? (
+                    <img
+                      src={photoURL || profile}
+                      alt="img"
+                      onClick={NavigateToProfile}
+                    />
+                  ) : (
+                    <button className="button1" onClick={goToAuth}>
+                      Credentials
+                    </button>
+                  )}
                 </div>
                 <div className="headeritem">
                   <Link to="/" onClick={toggleSidebar}>
@@ -133,7 +163,6 @@ export default function Header() {
                     CONTACT
                   </Link>
                 </div>
-               
               </div>
             </>
           ) : (

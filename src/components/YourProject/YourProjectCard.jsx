@@ -5,7 +5,6 @@ import { GrProjects } from "react-icons/gr";
 
 export default function YourProjectCard({ item }) {
   const navigate = useNavigate();
-  console.log(item);
 
   return (
     <>

@@ -3,8 +3,10 @@ import "./index.scss";
 import ProjectBoxCard from "./ProjectBoxCard";
 import { initialdata1 } from "../../Data/Data1";
 import { useAuth } from '../../AuthContext';
+import Loader from "../../components/Loader/Loader";
 export default function Projectbox() {
   const [projects, setProjects] = useState([]);
+  const [loader,Setloader]=useState(true);
   const { getAllProjects } = useAuth();
 
   useEffect(() => {
@@ -12,6 +14,7 @@ export default function Projectbox() {
       try {
         const projectsData = await getAllProjects();
         setProjects(projectsData);
+        Setloader(false);
       } catch (error) {
         console.error('Error fetching projects:', error);
       }
@@ -32,7 +35,7 @@ export default function Projectbox() {
             <button>Populor</button>
           </div>
         </div>
-        <div className="project-box-cards-container">
+        {loader?<Loader/>: <div className="project-box-cards-container">
           {projects.map((item, index) => (
             <ProjectBoxCard
               key={index}
@@ -42,7 +45,8 @@ export default function Projectbox() {
                // Pass index to determine left or right card
             />
           ))}
-        </div>
+        </div>}
+       
       </div>
     </>
   );

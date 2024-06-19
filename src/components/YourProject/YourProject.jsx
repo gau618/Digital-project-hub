@@ -3,8 +3,10 @@ import YourProjectCard from "./YourProjectCard";
 import { useAuth } from "../../AuthContext";
 import "./index.scss";
 import { GiH2O } from "react-icons/gi";
+import Loader from "../Loader/Loader";
 export default function YourProjects() {
   const [yourProjects, setYourProjects] = useState([]);
+  const [loader,Setloader]=useState(true);
   const [requestedProjects, setRequestedProjects] = useState([]);
   const [projectItems, setProjectItems] = useState([]);
   const [requestedProjectItems, setRequestedProjectItems] = useState([]);
@@ -37,6 +39,7 @@ export default function YourProjects() {
         })
       );
       setProjectItems(projectDetails);
+      Setloader(false);
     };
 
     const fetchRequestedProjectDetails = async () => {
@@ -47,6 +50,7 @@ export default function YourProjects() {
         })
       );
       setRequestedProjectItems(requestedProjectDetails);
+      Setloader(false);
     };
 
     if (yourProjects.length > 0) fetchProjectDetails();
@@ -57,7 +61,7 @@ export default function YourProjects() {
     <div className="projects">
       <h3>Your Project</h3>
       <hr />
-      <div className="Yourprojects">
+      {loader?<Loader/>:<div className="Yourprojects">
         {projectItems && projectItems.length > 0 ? (
           projectItems.map((item, index) => (
             <YourProjectCard key={index} item={item} />
@@ -65,14 +69,16 @@ export default function YourProjects() {
         ) : (
           <h2>Oops, currently you don't have any active projects</h2>
         )}
-      </div>
+      </div>}
+      
       <h3>Applied Project</h3>
       <hr />
-      <div className="AppliedProjects">
+      {loader?<Loader/>:<div className="AppliedProjects">
         {requestedProjectItems.map((item, index) => (
           <YourProjectCard key={index} item={item} />
         ))}
-      </div>
+      </div>}
+      
     </div>
   );
 }

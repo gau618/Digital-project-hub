@@ -23,6 +23,7 @@ export default function Profile() {
   const [projectName, setProjectName] = useState("");
   const [projectDescription, setProjectDescription] = useState("");
   const [projectList, setProjectList] = useState([]);
+  const [moderator, setmoderator]=useState();
   const { saveProfile, GetProfile, user, userName, userEmail, updateProfile, addPastProject, getPastProjects } = useAuth();
 
   useEffect(() => {
@@ -36,6 +37,7 @@ export default function Profile() {
           setSkills(data.skills || "");
           setAboutMe(data.aboutMe || "");
           setRole(data.role || "");
+          setmoderator(data.isModerator);
           // Fetch and set user's profile image
           fetchProfileImage();
         }
@@ -107,7 +109,13 @@ export default function Profile() {
       role: role,
     });
   };
-
+  const BecomeModerator=()=>{
+    setmoderator(true)
+    updateProfile({
+      isModerator:true
+    });
+    console.log("Done");
+  }
   return (
     <>
       {user ? (
@@ -182,6 +190,7 @@ export default function Profile() {
                 </>
               )}
             </div>
+           {moderator?"":<button onClick={BecomeModerator}>Become Moderator</button>}
           </div>
           <hr />
           <div className="right_container">
