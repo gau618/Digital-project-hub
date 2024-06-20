@@ -47,7 +47,7 @@ export default function Header() {
       setmoderator(data.isModerator);
     };
     fetchProfile();
-  }, [auth.currentUser,moderator]);
+  }, [auth.currentUser, moderator]);
 
   const goToAuth = () => {
     navigate("/auth");
@@ -103,10 +103,13 @@ export default function Header() {
             ) : (
               ""
             )}
-            {user&&moderator?
-            <Link to={`/ModeratorPage/${auth.currentUser.uid}`}>
-              MODERATORPAGE
-            </Link>:""}
+            {user && moderator ? (
+              <Link to={`/ModeratorPage/${auth.currentUser.uid}`}>
+                MODERATORPAGE
+              </Link>
+            ) : (
+              ""
+            )}
           </div>
           <div className="Searchbox">
             {auth.currentUser &&
@@ -162,6 +165,20 @@ export default function Header() {
                   <Link to="#" onClick={scrollToContacts}>
                     CONTACT
                   </Link>
+                  {user ? (
+                    <Link to={`/YourProjects/${auth.currentUser.uid}`}>
+                      YOURPROJECTS
+                    </Link>
+                  ) : (
+                    ""
+                  )}
+                  {user && moderator ? (
+                    <Link to={`/ModeratorPage/${auth.currentUser.uid}`}>
+                      MODERATORPAGE
+                    </Link>
+                  ) : (
+                    ""
+                  )}
                 </div>
               </div>
             </>

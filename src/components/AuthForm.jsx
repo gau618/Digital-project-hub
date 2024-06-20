@@ -198,7 +198,7 @@ const AuthForm = () => {
           <div className="toggle">
             <div className="toggle-panel toggle-left">
               <h1>Welcome Back!</h1>
-              <p>
+              <p className="authpara">
                 Unlock the full experience! Enter your details to access all
                 features
               </p>
@@ -214,7 +214,7 @@ const AuthForm = () => {
             </div>
             <div className="toggle-panel toggle-right">
               <h1>Hello, Friend!</h1>
-              <p>
+              <p className="authpara">
                 Register with your personal details to unlock all our site
                 features!
               </p>

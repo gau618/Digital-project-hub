@@ -54,6 +54,7 @@
     line-height: 20px;
     letter-spacing: 0.3px;
     margin: 20px 0;
+
 }
 
 .container span{
@@ -274,4 +275,7 @@
     .auth_phone{
         display: none;
     }
+}
+.authpara{
+    color: #fff;
 }

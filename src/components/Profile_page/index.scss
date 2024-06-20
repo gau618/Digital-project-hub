@@ -85,6 +85,24 @@
 
             }
         }
+        .moderator{
+            width: 100%;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .button1{
+                width: 210px;
+                height: 30px;
+                background-color:#fff;
+                border: none;
+                border-radius: 0px 5px 0px 5px;
+                color:  hsl(195.77, 100%, 38.04%);
+                transition-duration: .3s;
+                cursor: pointer;
+                border: 1px solid rgb(193, 193, 193);
+            }
+        }
     }
     .right_container{
         width: 60%;

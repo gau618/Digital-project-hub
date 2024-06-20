@@ -5,6 +5,7 @@ import LandingPage from "./pages/page1/Landingpage";
 import TaskDetailPage from "./pages/page2/Taskdetailpage";
 import YourProjects from "./components/YourProject/YourProject";
 import ProjectApplyPage from "./components/ProjectApplyPage/ProjectApplyPage";
+import Moderator from "./components/Moderator/Moderator";
 import Header from "./header/header";
 import Footer from "./Footer/Footer";
 import AOS from "aos";
@@ -32,6 +33,7 @@ const App = () => {
         <Route path="/ADDTASK" element={<TaskDetailPage />} />
         <Route path="/YourProjects/:id" element={<YourProjects />} />
         <Route path="/UserProfile/:id" element={<UserProfile />} />
+        <Route path="/ModeratorPage/:id" element={<Moderator/>}/>
         <Route path="/auth" element={<AuthForm />} />
         <Route path='/Project/:id' element={<ProjectApplyPage/>}> </Route>
       </Routes>

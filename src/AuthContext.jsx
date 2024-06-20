@@ -334,17 +334,6 @@ const getProjectsByModerator = async (moderatorId) => {
   }
 };
 
-  const moderatorId='ab1C4D9e';
-  getProjectsByModerator(moderatorId)
-  .then(matchingProjects => {
-    console.log('Matching Projects:', matchingProjects);
-  })
-  .catch(error => {
-    console.error('Error fetching projects:', error);
-  });
-
-  
-
   return (
     <AuthContext.Provider
       value={{
@@ -366,7 +355,8 @@ const getProjectsByModerator = async (moderatorId) => {
         storeInitialData,
         getProjectById,
         applyforproject,
-        getAllYourProjects
+        getAllYourProjects,
+        getProjectsByModerator
       }}
     >
       {children}

@@ -190,7 +190,9 @@ export default function Profile() {
                 </>
               )}
             </div>
-           {moderator?"":<button onClick={BecomeModerator}>Become Moderator</button>}
+            <div className="moderator">
+           {moderator?"":<button className="button1" onClick={BecomeModerator}>Become Moderator</button>}
+           </div>
           </div>
           <hr />
           <div className="right_container">

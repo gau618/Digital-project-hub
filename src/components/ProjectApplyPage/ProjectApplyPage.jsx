@@ -4,8 +4,9 @@ import { useParams, useNavigate } from "react-router-dom";
 import { IoMdStopwatch } from "react-icons/io";
 import { GrProjects } from "react-icons/gr";
 import "./index.scss";
-import firebase from "firebase/compat/app";
-
+import profile from "../../assets/profile.jpg"
+import { auth,storage  } from '../../firebase';
+import { getDownloadURL, ref } from "firebase/storage"; 
 export default function ProjectApplyPage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -13,6 +14,7 @@ export default function ProjectApplyPage() {
   const [mobile, setMobile] = useState("");
   const [PastProjectLink, setPastProjectLink] = useState("");
   const [projectDescription, setProjectDescription] = useState("");
+  const [PhotoURL,setPhotoURL]=useState();
   const [apply, setApply] = useState(true);
   const Navigate = useNavigate();
   const { getProjectById, GetProfile, user ,applyforproject} = useAuth();
@@ -26,7 +28,21 @@ export default function ProjectApplyPage() {
     };
     fetchProject();
   }, [id, getProjectById]);
-
+  useEffect(() => {
+    const fetchProfileImage = async () => {
+      if (auth.currentUser) {
+        try {
+          const userId = auth.currentUser.uid;
+          const imageRef = `profilePhotos/${userId}`;
+          const imageUrl = await getDownloadURL(ref(storage, imageRef));
+          setPhotoURL(imageUrl);
+        } catch (error) {
+          console.error("Error fetching profile image:", error);
+        }
+      }
+    };
+    fetchProfileImage();
+  }, [auth.currentUser]);
   useEffect(() => {
     if (user) {
       const fetchProfile = async () => {
@@ -64,7 +80,9 @@ export default function ProjectApplyPage() {
         YourModerator:item.moderatorId,
         github,
         projectStatus:'requested',
-        firebaseProjectid:id
+        firebaseProjectid:id,
+        PhotoURL:PhotoURL||profile,
+        userId:auth.currentUser.uid
     }
     console.log(userApplicationDetails);
     applyforproject(item.projectId,userApplicationDetails);
